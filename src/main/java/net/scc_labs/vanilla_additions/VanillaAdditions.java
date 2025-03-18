@@ -1,4 +1,4 @@
-package net.scc_labs.vanillaadditions;
+package net.scc_labs.vanilla_additions;
 
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,13 +12,14 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.scc_labs.vanilla_additions.item.ModItems;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(VanillaAdditions.MOD_ID)
 public class VanillaAdditions {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "vanillaadditions";
+    public static final String MOD_ID = "vanilla_additions";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -28,7 +29,8 @@ public class VanillaAdditions {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-
+        System.out.println("Registering ModItems to EventBus...");
+        ModItems.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
